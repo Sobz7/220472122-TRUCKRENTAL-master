@@ -5,9 +5,15 @@
 
 package za.ac.cput.domain;
 
-public class Customer {
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 
+import java.io.Serializable;
 
+@Entity
+public class Customer implements Serializable {
+
+@Id
     private String customerId;
     private String name;
     private String surname;
@@ -15,7 +21,7 @@ public class Customer {
     private String address;
     private String licenseNumber;
 
-    private Customer(){}
+    protected Customer(){}
 
 
     public Customer(Builder builder){

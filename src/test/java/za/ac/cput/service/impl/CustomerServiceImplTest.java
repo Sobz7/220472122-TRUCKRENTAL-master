@@ -3,24 +3,34 @@ package za.ac.cput.service.impl;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 import za.ac.cput.domain.Customer;
 import za.ac.cput.factory.CustomerFactory;
-import za.ac.cput.repository.impl.CustomerRepository;
+<<<<<<< HEAD
 
-import static org.junit.jupiter.api.Assertions.*;
+=======
+>>>>>>> 76685f55c2dfca669fefd840bee826eb1458435e
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
 @TestMethodOrder(MethodOrderer.MethodName.class)
+@SpringBootTest
 class CustomerServiceImplTest {
-    private static CustomerServiceImpl service = null;
-    private static Customer customer = CustomerFactory.createEmployee("yzyzyyydy" , "ray", "walker" , "ray@gmail.com" , "obs", "yzyzyyydy");
+
+    @Autowired
+    private  CustomerServiceImpl service ;
+    private static Customer customer = CustomerFactory.createCustomer("raymond", "walker" , "ray@gmail.com" , "observatory", "1687532");
 
 
-    public CustomerServiceImplTest() {service = CustomerServiceImpl.getService();}
+
     @Test
     void a_create() {
 
         Customer created = service.create(customer);
 
-        assertNotNull(created);
+        assertNotNull(created.getCustomerId(), created.getCustomerId());
         System.out.println("create: " + created);
     }
 
@@ -38,18 +48,18 @@ class CustomerServiceImplTest {
 
         Customer updated = new Customer.Builder().copy(customer).setName("Burger").setSurname("Naidoo").setEmail("Kruben@outlook.com").setAddress("rondebosch").setLicenseNumber("zggzgzgz").build();
 
-
+        updated = service.update(updated);
         assertNotNull(service.update(updated));
-        System.out.println("updated: " + updated);
+        System.out.println(customer.getCustomerId()); //updated.getCustomerId());
 
     }
 
     @Test
     void e_delete() {
 
-        boolean success = service.delete(customer.getCustomerId());
-        assertTrue(success);
-        System.out.println("deleted: " + success);
+        service.delete(customer.getCustomerId());
+        assertEquals(service.getAll().size(),0);
+        System.out.println(service.getAll());
 
     }
 

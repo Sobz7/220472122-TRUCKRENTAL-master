@@ -1,4 +1,8 @@
-//Protection Repository .java
+<<<<<<< HEAD
+/** //Protection Repository .java
+=======
+package za.ac.cput.repository.impl; /** //Protection Repository .java
+>>>>>>> 76685f55c2dfca669fefd840bee826eb1458435e
 // Class for the Protection Repository
 // Author: Jordy Meye (220072841)
 // Date: 24 03 2023
@@ -76,9 +80,29 @@ public class ProtectionRepository implements IProtectionRepository {
         return true;
     }
 
-    @Override
+
     public Set<Protection> getAll() {
         return protectionDB;
     }
 
+    @Override
+    public T create(T t) {
+        return null;
+    }
+
+    @Override
+    public T read(insuranceId id) {
+        return null;
+    }
+
+    @Override
+    public T update(insuranceId t) {
+        return null;
+    }
+
+    @Override
+    public boolean delete(insuranceId id) {
+        return false;
+    }
 }
+*/

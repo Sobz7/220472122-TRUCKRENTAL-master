@@ -1,3 +1,5 @@
+<<<<<<< HEAD
+/*
 //Domain  Protection class
 // Pojo Portection
 // Author: Jordy Meye (220072841)
@@ -5,15 +7,46 @@
 
 package za.ac.cput.domain;
 
-public class Protection {
 
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.OneToMany;
+import org.springframework.data.annotation.Id;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+
+=======
+package za.ac.cput.domain;
+
+import jakarta.persistence.Entity;
+import org.springframework.data.annotation.Id;
+
+import java.io.Serializable;
+>>>>>>> 76685f55c2dfca669fefd840bee826eb1458435e
+
+@Entity
+public class Protection implements Serializable {
+
+<<<<<<< HEAD
+//@OneToMany (fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+//private ArrayList<Customer> customer = new ArrayList<>();
+=======
+
+>>>>>>> 76685f55c2dfca669fefd840bee826eb1458435e
+    @Id
     private String insuranceId;
     private String truckId;
     private String policyType;
     private String startDate;
     private String endDate;
 
-    private Protection(){}
+<<<<<<< HEAD
+=======
+
+>>>>>>> 76685f55c2dfca669fefd840bee826eb1458435e
+    protected Protection(){}
 
     public Protection(Builder builder){
         this.insuranceId= builder.insuranceId;
@@ -75,6 +108,13 @@ public class Protection {
                 '}';
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getId() {
+        return id;
+    }
 
 
     public static class Builder{
@@ -124,4 +164,9 @@ public class Protection {
             return new Protection(this);
         }
     }
+<<<<<<< HEAD
 }
+*/
+=======
+}
+>>>>>>> 76685f55c2dfca669fefd840bee826eb1458435e

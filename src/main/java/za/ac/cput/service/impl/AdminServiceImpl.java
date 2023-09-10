@@ -3,54 +3,51 @@
 //Date: 14/06/2023
 package za.ac.cput.service.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import za.ac.cput.domain.Admin;
-import za.ac.cput.repository.impl.AdminRepository;
+import za.ac.cput.repository.IAdminRepository;
 import za.ac.cput.service.AdminService;
 
 import java.util.Set;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
+@Service
 public class AdminServiceImpl implements AdminService {
 
     private static AdminServiceImpl service = null;
-    private AdminRepository repository = null;
 
-    private AdminServiceImpl(){
-        repository = AdminRepository.getRepository();
-    }
+    @Autowired
+    private IAdminRepository repository;
 
-    public static AdminServiceImpl getService(){
-        if (service ==null){
-            service = new AdminServiceImpl();
-        }
-        return service;
+
+    @Override
+    public Admin create(Admin adminId){
+        return this.repository.save(adminId);
     }
 
     @Override
-    public Admin create(Admin admin) {
-        Admin created = repository.create(admin);
-        return created;
+    public Admin read(String adminId){
+        return repository.findByAdminId(adminId);
     }
 
     @Override
-    public Admin read(String adminId) {
-        Admin read = repository.read(adminId);
-        return read;
+    public Admin update(Admin admin){
+        if (this.repository.existsById(admin.getAdminId()))
+            return this.repository.save(admin);
+        return null;
     }
 
     @Override
-    public Admin update(Admin admin) {
-        Admin updated = repository.update(admin);
-        return updated;
+    public void delete (String adminId){
+        this.repository.deleteById(adminId);
     }
 
-    @Override
-    public boolean delete(String adminId) {
-        boolean success = repository.delete(adminId);
-        return success;
+    public Set<Admin> getAll(){
+        return this.repository.findAll().stream().collect(Collectors.toSet());
     }
 
-    @Override
-    public Set<Admin> getAll() {
-        return repository.getAll();
-    }
+
+
 }

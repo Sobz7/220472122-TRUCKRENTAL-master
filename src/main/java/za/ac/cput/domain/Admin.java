@@ -4,13 +4,20 @@
 
 package za.ac.cput.domain;
 
-public class Admin {
-    private int adminId;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
+import java.io.Serializable;
+
+@Entity
+public class Admin implements Serializable {
+    @Id
+    private String adminId;
     private String name;
     private String surname;
     private String email;
 
-    private Admin(int adminId, String name, String surname, String email){}
+    protected Admin(){}
 
     public Admin(Builder builder){
         this.adminId = builder.adminId;
@@ -19,7 +26,7 @@ public class Admin {
         this.email = builder.email;
     }
 
-    public int getAdminId() {
+    public String getAdminId() {
         return adminId;
     }
 
@@ -46,12 +53,12 @@ public class Admin {
     }
 
     public static class Builder{
-        private int adminId;
+        private String adminId;
         private String name;
         private String surname;
         private String email;
 
-        public Builder setAdminId(int adminId){
+        public Builder setAdminId(String adminId){
             this.adminId = adminId;
             return this;
         }
@@ -87,5 +94,4 @@ public class Admin {
         }
 
     }
-
 }

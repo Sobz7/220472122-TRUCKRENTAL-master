@@ -9,10 +9,10 @@ import za.ac.cput.domain.Admin;
 import static org.junit.jupiter.api.Assertions.*;
 
 class AdminFactoryTest {
-@Test
+    @Test
     public void createAdmin(){
-    Admin admin = AdminFactory.createAdmin(001,"Jordy", "Meye","jordymeye@gmail.com" );
-    assertNotNull(admin);
-    System.out.println(admin);
-}
+        Admin admin = AdminFactory.createAdmin("001","Jordy", "Meye","jordymeye@gmail.com" );
+        assertNotNull(admin);
+        System.out.println(admin);
+    }
 }

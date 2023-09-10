@@ -27,8 +27,8 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public Category read(String returnId) {
-        Category read = repository.read(returnId);
+    public Category read(String categoryId) {
+        Category read = repository.read(categoryId);
         return read;
     }
 
@@ -39,8 +39,8 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public boolean delete(String returnId) {
-        boolean success = repository.delete(returnId);
+    public boolean delete(String categoryId) {
+        boolean success = repository.delete(categoryId);
         return success;
     }
 

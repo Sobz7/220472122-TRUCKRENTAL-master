@@ -4,50 +4,57 @@
 // Date: 10 06 2023
 package za.ac.cput.service.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import za.ac.cput.domain.Customer;
-import za.ac.cput.repository.impl.CustomerRepository;
+import za.ac.cput.repository.ICustomerRepository;
+<<<<<<< HEAD
+//import za.ac.cput.repository.impl.CustomerRepository;
+=======
+>>>>>>> 76685f55c2dfca669fefd840bee826eb1458435e
 import za.ac.cput.service.CustomerService;
 
 import java.util.Set;
+import java.util.stream.Collectors;
 
+@Service
 public class CustomerServiceImpl implements CustomerService {
 
-    private static CustomerServiceImpl service = null;
-    private CustomerRepository repository = null ;
+    private static CustomerService service = null;
+    @Autowired
 
-    private CustomerServiceImpl(){
-        repository = CustomerRepository.getRepository();
+    private ICustomerRepository repository;
+
+
+
+
+@Override
+    public Customer create ( Customer customerId){
+    return this.repository.save(customerId);
     }
 
-    public static CustomerServiceImpl getService(){
-        if(service == null){
-            service = new CustomerServiceImpl();
-        }
-        return service;
-    }
-
-    public Customer create ( Customer customer){
-        Customer created = repository.create(customer);
-        return  created;
-    }
 
     @Override
     public Customer read(String customerId) {
-        Customer read = repository.read(customerId);
-        return read;
+        return repository.findByCustomerId(customerId);
+    }
+
+   @Override
+    public Customer update(Customer customer) {
+        if (this.repository.existsById(customer.getCustomerId()))
+            return this.repository.save(customer);
+        return  null;
     }
 
     @Override
-    public Customer update(Customer customer) {
-        Customer updated = repository.update(customer);
-        return updated;
-    }
 
-    public boolean delete ( String id){
-        boolean success = repository.delete(id);
-        return success ;
+    public void delete ( String customerId){
+         this.repository.deleteById(customerId);
+
     }
 
 
-    public Set<Customer> getAll(){return repository.getAll();}
+    public Set<Customer> getAll(){return this.repository.findAll().stream().collect(Collectors.toSet());
+    }
+
 }

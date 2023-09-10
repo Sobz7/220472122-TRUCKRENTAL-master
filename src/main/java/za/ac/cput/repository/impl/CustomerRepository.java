@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+/*
+=======
+package za.ac.cput.repository.impl;/*
+>>>>>>> 76685f55c2dfca669fefd840bee826eb1458435e
 //Customer Repository .java
 // Class for the Customer
 // Author: Jordy Meye (220072841)
@@ -10,6 +15,7 @@ import za.ac.cput.domain.Customer;
 import za.ac.cput.repository.ICustomerRepository;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class CustomerRepository implements ICustomerRepository {
@@ -29,7 +35,7 @@ public class CustomerRepository implements ICustomerRepository {
     }
 
 
-    @Override
+
     public Customer create(Customer customer){
 
         boolean success = customerDB.add(customer);
@@ -39,7 +45,7 @@ public class CustomerRepository implements ICustomerRepository {
     }
 
 
-    @Override
+
     public Customer read(String customerId) {
         for(Customer e : customerDB){
 
@@ -53,7 +59,7 @@ public class CustomerRepository implements ICustomerRepository {
 
 
 
-    @Override
+
     public Customer update(Customer customer) {
         Customer oldCustomer = read(customer.getCustomerId());
         if(oldCustomer != null){
@@ -79,9 +85,14 @@ public class CustomerRepository implements ICustomerRepository {
         return true;
     }
 
-    @Override
-    public Set<Customer> getAll() {
+
+    public Set <Customer> getAll() {
         return customerDB;
     }
 
+
+
 }
+
+
+ */

@@ -1,17 +1,15 @@
 package za.ac.cput.factory;
+
 import za.ac.cput.domain.Truck;
 import za.ac.cput.util.Helper;
+
 public class TruckFactory {
-    public static Truck createTruck(String truckId, String model, int year, boolean availability, String licensePlate, double currentMileage, int brandId) {
-        if (Helper.isNullorEmpty(model)|| Helper.isNullorEmpty(licensePlate))
+    public static Truck createTruck(String model, int year, boolean availability, String licencePlate , double currentMileage, int brandId){
+        if (Helper.isNullorEmpty(model)|| Helper.isNullorEmpty(licencePlate)){
             return null;
-        return new Truck.Builder()
-                .setTruckId(truckId)
-                .setModel(model)
-                .setYear(year)
-                .setLicensePlate(licensePlate)
-                .setCurrentMileage(currentMileage)
-                .setBrandId(brandId)
-                .build();
+        }
+        String random_Id = Helper.generateId().toString();
+        return Truck.builder().truckId(random_Id).model(model)
+                .year(year).availability(availability).licensePlate(licencePlate).currentMileage(currentMileage).brandId(brandId).build();
     }
 }

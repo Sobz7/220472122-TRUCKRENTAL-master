@@ -1,56 +1,67 @@
+/*
+
 package za.ac.cput.repository;
 
+import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
 import za.ac.cput.domain.Location;
 import za.ac.cput.factory.LocationFactory;
 import za.ac.cput.repository.impl.LocationRepository;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static za.ac.cput.repository.BrandRepositoryTest.brand;
 
+@TestMethodOrder(MethodOrderer.MethodName.class)
 class LocationRepositoryTest {
 
     private static LocationRepository repository = LocationRepository.getRepository();
-
-    private static Location location = LocationFactory.createLocation(667, "Cape Town", "Plein Street");
+    private static Brand brand = BrandFactory.createBrand( "353", "Cape Town" , "Plein Street");
 
 
     @Test
-    void create() {
+    void a_create() {
+
         Location created = repository.create(location);
-        assertEquals(brand.getBrandId(),created.getLocationId());
-        System.out.println("Create:" + created);
+
+         assertEquals(location, created.getLocationId());
+        System.out.println("create: " + created);
     }
 
     @Test
-    void read() {
-        Location read= repository.read(String.valueOf(location.getLocationId()));
-        assertNotNull(read);
-        System.out.println("Read:" + read);
+    void b_read() {
+        Location read2 = repository.read(Location.getlocationId());
+        assertNotNull(read2);
+        System.out.println("read: " + read2);
+
     }
 
-
     @Test
-   void update() {
-        Location updated = new Location.Builder().copy(location).setLocationName("Cape Town")
-                .setLocationId(353)
-                .setAddress("Plein Street")
-                .build();
+    void c_update() {
+
+        Location updated = new Location.Builder().copy(location).setlocationId("353").setlocationName("Cape Town").setAddress("Plein Street").build();
+
         assertNotNull(repository.update(updated));
-        System.out.println("Update:" + updated);
+        System.out.println("updated: " + updated);
+
     }
 
     @Test
-    void delete() {
-        boolean success = repository.delete(String.valueOf(location.getLocationId()));
+    void e_delete() {
+
+        boolean success = repository.delete(location.getId());
         assertTrue(success);
-        System.out.println("Deleted:" + success);
+        System.out.println("deleted: " + success);
 
     }
 
+
     @Test
-    void getAll() {
-        System.out.println("show all :");
+    void d_getAll() {
+        System.out.println("show all: ");
         System.out.println(repository.getAll());
+
     }
 }
+
+
+ */

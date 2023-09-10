@@ -3,7 +3,7 @@ package za.ac.cput.service.impl;
 
 import za.ac.cput.domain.Truck;
 import za.ac.cput.repository.impl.TruckRepository;
-import za.ac.cput.repository.impl.TruckRepository;
+
 import za.ac.cput.service.TruckService;
 
 import java.util.Set;
@@ -30,8 +30,8 @@ public class TruckServiceImpl implements TruckService {
     }
 
     @Override
-    public Truck read(String returnId) {
-        Truck read = repository.read(returnId);
+    public Truck read(String truckId) {
+        Truck read = repository.read(truckId);
         return read;
     }
 
@@ -42,8 +42,8 @@ public class TruckServiceImpl implements TruckService {
     }
 
     @Override
-    public boolean delete(String returnId) {
-        boolean success = repository.delete(returnId);
+    public boolean delete(String truckId) {
+        boolean success = repository.delete(truckId);
         return success;
     }
 

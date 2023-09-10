@@ -1,15 +1,15 @@
 package za.ac.cput.factory;
 
-import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 import za.ac.cput.domain.Truck;
-//import factory.CategoryFactory;
+
+import static org.junit.jupiter.api.Assertions.*;
+
 class TruckFactoryTest {
     @Test
-    public void test() {
-        Truck truck = TruckFactory.createTruck("mms", "Ford F-160", 2020, true, "siya2023", 500.0, 2 );
-        System.out.println(truck.toString());
-        assertNotNull(truck);
-
+    void createTruck() {
+        Truck createTruck = TruckFactory.createTruck("Ford", 2017, true, "CP56789", 456, 23 );
+        assertNotNull(createTruck);
+        System.out.println("Created: " + createTruck);
     }
 }

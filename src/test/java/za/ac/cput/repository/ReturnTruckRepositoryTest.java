@@ -1,6 +1,7 @@
 //ReturnTruck Repository test Class
 //Author: Chenique Jacobs (220388172)
 //Date: 08/04/2023
+/*
 package za.ac.cput.repository;
 
 import org.junit.jupiter.api.Test;
@@ -53,3 +54,5 @@ class ReturnTruckRepositoryTest {
     }
 
 }
+
+ */

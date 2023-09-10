@@ -1,36 +1,12 @@
 package za.ac.cput.repository;
-/*Author Ayanda Phumzile Khoza
-Student Number 218057172
- */
 
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 import za.ac.cput.domain.Brand;
 
-import java.util.Set;
-
-public interface IBrandRepository extends IRepository<Brand, String>
-{
-
-    Brand read();
-
-    Brand read(String brandId);
-    
-    default boolean delete(String brandId){
-        return false;
-    }
-    
-    public Set<Brand>getAll = null;
-
-    Set<Brand> getAll();
+@Repository
+public interface IBrandRepository extends JpaRepository<Brand, Integer> {
 
 
-    //CRUD Operation
-    //Brand create(Brand brand);
-
-    
-
-    //Brand update(Brand brand)
-
-    //abstract boolean delete();
-
-    
+    Brand findByBrandId(int brandId);
 }

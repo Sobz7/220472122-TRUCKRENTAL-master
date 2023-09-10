@@ -1,0 +1,44 @@
+package za.ac.cput.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+import za.ac.cput.domain.Location;
+import za.ac.cput.factory.LocationFactory;
+
+import za.ac.cput.service.LocationService;
+import za.ac.cput.service.impl.LocationServiceImpl;
+
+import java.util.Set;
+
+@RestController
+@RequestMapping("/location")
+public class LocationController {
+
+    @Autowired
+    LocationServiceImpl locationService;
+
+
+    @PostMapping("/create")
+    public Location create(@RequestBody Location location) {
+        Location newLocation = LocationFactory.createLocation(location.getlocationId(), location.getLocationName(), location.getAddress());
+        return locationService.create(newLocation);
+    }
+
+    @GetMapping("/read/{id}")
+    public Location read(@PathVariable String id) {
+        return locationService.read(id);
+    }
+
+    @PostMapping("/update")
+    public Location update(@RequestBody Location location) {
+        return locationService.update(location);
+    }
+
+    @DeleteMapping("/delete/{id}")
+   // public boolean delete(@PathVariable .Scalar.String id){ locationService.delete(id);}
+
+    @GetMapping("/getAll")
+    public Set<Location> getAll() {
+        return locationService.getAll();
+    }
+}
