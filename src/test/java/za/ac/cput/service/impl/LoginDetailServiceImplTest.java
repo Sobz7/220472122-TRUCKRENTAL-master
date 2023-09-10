@@ -4,33 +4,30 @@ LoginDetailServiceImplTest.java
 @Author: Siyakha Manisi (219239657)
 12 June 2023
 */
+
 package za.ac.cput.service.impl;
 
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
+import org.springframework.boot.test.context.SpringBootTest;
 import za.ac.cput.domain.LoginDetail;
 import za.ac.cput.factory.LoginDetailFactory;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 @TestMethodOrder(MethodOrderer.MethodName.class)
+@SpringBootTest
 class LoginDetailServiceImplTest {
 
-    private static LoginDetailServiceImpl service = null;
-    private static LoginDetail logind = LoginDetailFactory.createLoginDetail("Girlie there", "MeanMe?1");
+    private static LoginDetailServiceImpl service;
+    private static LoginDetail lgd = LoginDetailFactory.createLoginDetail("Girlie there", "MeanMe?1");
 
-
-    public LoginDetailServiceImplTest()
-    {
-        service = LoginDetailServiceImpl.getService();
-
-    }
     @Test
     void a_create()
     {
-        LoginDetail created = service.create(logind);
-        assertNotNull(created);
+        LoginDetail created = service.create(lgd);
+        assertNotNull(created.getUsername(), created.getUsername());
         System.out.println("Created: " + created);
 
     }
@@ -38,7 +35,7 @@ class LoginDetailServiceImplTest {
     @Test
     void b_read()
     {
-        LoginDetail read = service.read(logind.getUsername());
+        LoginDetail read = service.read(lgd.getUsername());
         assertNotNull(read);
         System.out.println("Read: " + read);
 
@@ -47,19 +44,20 @@ class LoginDetailServiceImplTest {
     @Test
     void c_update()
     {
-        LoginDetail updated = new LoginDetail.Builder().copy(logind)
+        LoginDetail updated = new LoginDetail.Builder().copy(lgd)
                 .setPassword("123#@Cool")
                 .build();
-        assertNotNull(updated);
-        System.out.println("Updated: " + updated);
+        updated = service.update(updated);
+        assertNotNull(service.update(updated));
+        System.out.println(lgd.getUsername());
     }
 
     @Test
     void e_delete()
     {
-        boolean success = service.delete(logind.getUsername());
-        assertTrue(success);
-        System.out.println("Deleted: " + success);
+        service.delete(lgd.getUsername());
+        assertEquals(service.getAll().size(), 0);
+        System.out.println(service.getAll());
 
     }
 

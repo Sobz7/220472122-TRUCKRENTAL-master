@@ -5,16 +5,10 @@
 
 package za.ac.cput.service;
 
-<<<<<<< HEAD
-public interface IService  <T, ID> {
-=======
-public interface IService<T, ID> {
->>>>>>> 76685f55c2dfca669fefd840bee826eb1458435e
+public interface IService <T, ID> {
 
     T create(T t);
     T read(ID id);
     T update(T t);
     void delete(ID id);
-
-
 }
