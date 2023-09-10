@@ -9,14 +9,14 @@ package za.ac.cput.domain;
 import java.util.Objects;
 
 public class Driver {
-    String driverID;
-    String name;
-    String surname;
-    String email;
-    int idNumber;
-    String licenseNo;
-    int telephone;
-    int rentalID;
+    private String driverID;
+    private String name;
+    private String surname;
+    private String email;
+    private int idNumber;
+    private String licenseNo;
+    private int telephone;
+    private int rentalID;
 
     private Driver() {
 

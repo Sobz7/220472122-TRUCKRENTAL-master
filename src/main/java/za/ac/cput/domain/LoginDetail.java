@@ -9,8 +9,8 @@ package za.ac.cput.domain;
 import java.util.Objects;
 
 public class LoginDetail {
-    String username;
-    String password;
+    private String username;
+    private String password;
 
     private LoginDetail(Builder builder)
     {
