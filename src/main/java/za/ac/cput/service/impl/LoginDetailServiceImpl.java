@@ -7,65 +7,51 @@ LoginDetailServiceImpl.java
 
 package za.ac.cput.service.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import za.ac.cput.domain.LoginDetail;
-import za.ac.cput.repository.LoginDetailRepository;
+import za.ac.cput.repository.ILoginDetailRepository;
 import za.ac.cput.service.LoginDetailService;
 
 import java.util.Set;
+import java.util.stream.Collectors;
 
-public class LoginDetailServiceImpl implements LoginDetailService{
+@Service
+public abstract class LoginDetailServiceImpl implements LoginDetailService{
 
     private static LoginDetailServiceImpl service = null;
-    private LoginDetailRepository repo = null;
 
-    private LoginDetailServiceImpl()
+    @Autowired
+    private ILoginDetailRepository repo;
+
+    public LoginDetail create (LoginDetail ldId)
     {
-        repo = LoginDetailRepository.getRepository();
+        return this.repo.save(ldId);
 
     }
 
-    public static LoginDetailServiceImpl getService()
+    public LoginDetail read (LoginDetail ld)
     {
-        if(service == null)
-        {
-            service = new LoginDetailServiceImpl();
+        return repo.findByldId(ld);
 
-        }
-        return service;
+    }
+    public LoginDetail update (LoginDetail username)
+    {
+        if (this.repo.existsById(username.getUsername()))
+        return this.repo.save(username);
+        return null;
 
     }
 
-    public LoginDetail create (LoginDetail ld)
+    public void delete (String username)
     {
-        LoginDetail created = repo.create(ld);
-        return created;
-
-    }
-
-    public LoginDetail read (String username)
-    {
-        LoginDetail read = repo.read(username);
-        return read;
-
-    }
-
-    public LoginDetail update (LoginDetail ld)
-    {
-        LoginDetail updated = repo.update(ld);
-        return updated;
-
-    }
-
-    public boolean delete (String username)
-    {
-        boolean success = repo.delete(username);
-        return success;
+        this.repo.deleteById(username);
 
     }
 
     public Set<LoginDetail> getAll()
     {
-        return repo.getAll();
+        return this.repo.findAll().stream().collect(Collectors.toSet());
 
     }
 

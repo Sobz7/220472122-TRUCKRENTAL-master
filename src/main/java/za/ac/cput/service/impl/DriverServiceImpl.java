@@ -7,62 +7,50 @@ DriverServiceImpl.java
 
 package za.ac.cput.service.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import za.ac.cput.domain.Driver;
-import za.ac.cput.repository.DriverRepository;
+import za.ac.cput.repository.IDriverRepository;
 import za.ac.cput.service.DriverService;
 
 import java.util.Set;
+import java.util.stream.Collectors;
 
+@Service
 public class DriverServiceImpl implements DriverService {
-    private static DriverServiceImpl serv = null;
-    private DriverRepository repo = null;
+    private static DriverServiceImpl service = null;
 
-    private DriverServiceImpl()
+    @Autowired
+    private IDriverRepository repo;
+
+    @Override
+    public Driver create (Driver driverID)
     {
-        repo = DriverRepository.getRepository();
-
-    }
-
-    static DriverServiceImpl getService()
-    {
-        if(serv == null)
-        {
-            serv = new DriverServiceImpl();
-        }
-        return serv;
-
-    }
-
-    public Driver create (Driver driver)
-    {
-        Driver created = repo.create(driver);
-        return created;
+        return this.repo.save(driverID);
     }
 
     public Driver read (String driverID)
     {
-        Driver read = repo.read((driverID));
-        return read;
-
+        return repo.findByDriverId(driverID);
     }
 
     public Driver update (Driver driver)
     {
-        Driver updated = repo.update(driver);
-        return updated;
+        if(this.repo.existsById(driver.getDriverID()))
+        return this.repo.save(driver);
+        return null;
 
     }
 
-    public boolean delete (String id)
+    public void delete (String driverID)
     {
-        boolean success = repo.delete(id);
-        return success;
+        this.repo.deleteById(driverID);
 
     }
 
     public Set<Driver> getAll()
     {
-        return repo.getAll();
+        return this.repo.findAll().stream().collect(Collectors.toSet());
 
     }
 

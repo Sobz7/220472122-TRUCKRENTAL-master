@@ -10,27 +10,27 @@ package za.ac.cput.service.impl;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 import za.ac.cput.domain.Driver;
 import za.ac.cput.factory.DriverFactory;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 @TestMethodOrder(MethodOrderer.MethodName.class)
+@SpringBootTest
 class DriverServiceImplTest {
-    private static DriverServiceImpl service = null;
-    private static Driver driver = DriverFactory.createDriver("Siyakha", "Manisi", "siya@gmail.com", 10528, "Code 8", 71819, 546321);
 
-    public DriverServiceImplTest()
-    {
-        service = DriverServiceImpl.getService();
-
-    }
+    @Autowired
+    private static DriverServiceImpl service;
+    private static Driver driver = DriverFactory.createDriver("Siyakha", "Manisi", "siya@gmail.com",
+            10528, "Code 8", 71819, 546321);
 
     @Test
     void a_create()
     {
         Driver created = service.create(driver);
-        assertNotNull(created);
+        assertNotNull(created.getDriverID(), created.getDriverID());
         System.out.println("Created: " + created);
 
     }
@@ -54,17 +54,18 @@ class DriverServiceImplTest {
                 .setLicenseNo("Code 10")
                 .setRentalID(789123)
                 .build();
+        updated = service.update(updated);
         assertNotNull(service.update(updated));
-        System.out.println("Updated: " + updated);
+        System.out.println(driver.getDriverID());
 
     }
 
     @Test
     void e_delete()
     {
-        boolean success = service.delete(driver.getDriverID());
-        assertTrue(success);
-        System.out.println("Deleted: " + success);
+        service.delete(driver.getDriverID());
+        assertEquals(service.getAll().size(), 0);
+        System.out.println(service.getAll());
     }
 
     @Test

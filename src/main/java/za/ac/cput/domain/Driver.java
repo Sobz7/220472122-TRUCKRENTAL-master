@@ -6,9 +6,14 @@ Driver.java
 * */
 package za.ac.cput.domain;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
 import java.util.Objects;
 
+@Entity
 public class Driver {
+    @Id
     private String driverID;
     private String name;
     private String surname;
@@ -18,7 +23,7 @@ public class Driver {
     private int telephone;
     private int rentalID;
 
-    private Driver() {
+    protected Driver() {
 
     }
 
@@ -54,8 +59,8 @@ public class Driver {
         return idNumber;
     }
 
-    public String getLicenseNo() {
-        return licenseNo;
+    public int getLicenseNo() {
+        return Integer.parseInt(licenseNo);
     }
 
 
