@@ -1,3 +1,10 @@
+/*
+LoginDetailControllerTest.java
+2nd Controller Test entity
+@Author: Siyakha Manisi (219239657)
+09 April 2023
+* */
+
 package za.ac.cput.controller;
 
 import org.junit.Test;
@@ -7,7 +14,11 @@ import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.*;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.springframework.test.context.junit4.SpringRunner;
 import za.ac.cput.domain.LoginDetail;
 import za.ac.cput.factory.LoginDetailFactory;
 
@@ -75,7 +86,7 @@ public class LoginDetailControllerTest {
 
     @Disabled
     @Test
-    void d_delete()
+    void e_delete()
     {
         String url = basedURL + "/delete/" + lgd.getUsername();
         System.out.printf("URL" + url);
@@ -84,7 +95,7 @@ public class LoginDetailControllerTest {
     }
 
     @Test
-    void e_getAll()
+    void d_getAll()
     {
         String url = basedURL + "/getAll";
         HttpHeaders headers = new HttpHeaders();

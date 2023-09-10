@@ -4,6 +4,7 @@ Driver.java
 @Author: Siyakha Manisi (219239657)
 09 April 2023
 * */
+
 package za.ac.cput.domain;
 
 import jakarta.persistence.Entity;

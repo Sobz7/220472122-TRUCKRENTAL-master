@@ -1,3 +1,9 @@
+/*
+LoginDetailController.java
+2nd Controller Entity
+@Author: Siyakha Manisi (219239657)
+09 April 2023
+* */
 package za.ac.cput.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;

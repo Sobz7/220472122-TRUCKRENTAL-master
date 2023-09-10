@@ -1,3 +1,10 @@
+/*
+DriverControllerTest.java
+1st Controller Test entity
+@Author: Siyakha Manisi (219239657)
+09 April 2023
+* */
+
 package za.ac.cput.controller;
 
 import org.junit.Test;
@@ -7,7 +14,11 @@ import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.*;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.springframework.test.context.junit4.SpringRunner;
 import za.ac.cput.domain.Driver;
 import za.ac.cput.factory.DriverFactory;
 
