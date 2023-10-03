@@ -1,6 +1,8 @@
-/* package za.ac.cput.service.impl;
+package za.ac.cput.service.impl;
+/*
 
 import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 import za.ac.cput.domain.Rental;
 import za.ac.cput.repository.impl.RentalRepository;
 import za.ac.cput.service.RentalService;
@@ -9,7 +11,7 @@ import java.util.Set;
 
 import static org.apache.catalina.security.SecurityUtil.remove;
 
-@Repository
+@Service("rentalService")
 public class RentalServiceImpl implements RentalService {
 
     private static RentalServiceImpl service = null;

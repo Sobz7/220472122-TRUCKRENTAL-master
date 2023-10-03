@@ -1,25 +1,9 @@
 package za.ac.cput.service;
 
-import za.ac.cput.domain.Payment;
+import org.springframework.stereotype.Service;
+import za.ac.cput.TruckRental.domain.Payment;
 
-import java.util.Set;
+@Service
+public interface PaymentService extends IService<Payment, Integer> {
 
-public interface PaymentService {
-    Payment create(Payment payment);
-
-    Payment read(int paymentId);
-
-    Payment read(String s);
-
-    Payment read(Integer paymentId);
-
-    Payment update(Payment payment);
-
-    boolean delete(int paymentId);
-
-    boolean delete(String s, String paymentId);
-
-    boolean delete(Integer paymentId);
-
-    Set<Payment> getAll();
 }
